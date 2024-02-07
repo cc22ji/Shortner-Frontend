@@ -1,5 +1,5 @@
 import React,{useState} from 'react';
-import {useNavigate} from "react-router-dom"
+import {useNavigate,Link} from "react-router-dom"
 
 const SignUpURL = process.env.REACT_APP_SIGNUP_URL || "http://localhost:4000/api/v1/user/signup"
 
@@ -92,7 +92,7 @@ const Signup = () => {
       <div class="flex items-center justify-between flex-wrap">
         
         
-        <p class="text-white mt-"> Already have an account? <a class="text-sm text-blue-500 -200 hover:underline mt-4" href="/login">Login</a></p>
+        <p class="text-white mt-"> Already have an account? <Link class="text-sm text-blue-500 -200 hover:underline mt-4" to="/login">Login</Link></p>
       </div>
       <button class="bg-slate-900 hover:bg-slate-700 text-white font-bold py-2 px-4 rounded-md mt-4  hover:to-blue-600 transition ease-in-out duration-150" type="submit" 
        onClick={handleFormSubmit}

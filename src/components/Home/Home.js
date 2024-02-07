@@ -2,7 +2,9 @@ import React,{useEffect, useState} from 'react';
 import { MdOutlineContentCopy } from "react-icons/md";
 import Navbar from '../Navbar/navbar';
 import axios from "axios";
+import useAuthentication from "../useAuth/useAuth"
 
+import Warning from '../warning/warning';
 
 
 const backendURL = "http://localhost:4000/api/v1/url"
@@ -13,6 +15,16 @@ const Home = ({login}) => {
     const [text, setText] = useState("");
     const [input, setInput] = useState("");
     const [responseData, setResponseData] = useState("");
+
+    //
+  
+    const  {isLoggedIn , userdata} = useAuthentication();
+    console.log("home22",isLoggedIn ,userdata)
+  
+    if (!isLoggedIn) {
+      return (<Warning/>)
+    }
+    //
 
     const copyToClipboard = () => {
         navigator.clipboard.writeText(text);
@@ -66,7 +78,7 @@ const Home = ({login}) => {
     return (
         <>
         <Navbar login = {login}/>
-         <div className='flex flex-wrap justify-center items-center h-auto mt-32'>
+         <div className='flex flex-wrap justify-center items-center h-auto mt-32 lg:mt-16 xl:mt-32 z-0'>
             <div className=' w-1/12'></div>
             <div className='bg-blu-400 w-10/12'>
 
@@ -84,9 +96,11 @@ const Home = ({login}) => {
   </div>
 
 
-  <div className='flex '>
+  {
+    (responseData) ? (
+      <div className='flex '>
    <div className='border border-gray-300 text-gray-900 text-lg rounded-lg focus:ring-blue-50 focus:border-blue-50 block w-5/6 p-2.5 h-12'>
-    {`http//:localhost/${responseData}`}
+    {responseData}
    </div>
    <div className=' border-gray-300 text-gray-900 text-lg rounded-lg focus:ring-blue-50 focus:border-blue-50  w-1/12 p-2.5 h-12 ml-4 flex '>
       <button onClick={copyToClipboard} className="text-blue-500 focus:outline-none">
@@ -96,10 +110,12 @@ const Home = ({login}) => {
 
    </div>
    </div>
+    ) : (null)
+  }
 
 
 <div className='flex items-center mt-8 '>
-<button type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-lg px-5 py-2.5 me-2 mb-2 h-12 w-1/3 focus:outline-none " onClick={handleData}>Generate your link</button>
+<button type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-lg px-5 py-2.5 me-2 mb-2 h-12 w-5/6 md:w-1/3 focus:outline-none " onClick={handleData}>Generate your link</button>
 </div>
 
     

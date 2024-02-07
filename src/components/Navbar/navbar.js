@@ -1,18 +1,22 @@
 import React, { useState } from "react";
 import logo from "../../images/logo.png";
 import { useNavigate,Link } from "react-router-dom";
+import useAuthentication from "../useAuth/useAuth";
 
 
 
-function Navbar({login}) {
+function Navbar() {
   const [toggle, settogle] = useState(true);
-  // const [login, setLogin] = useState(true);
   const Navigate = useNavigate();
   
-  
+  const {isLoggedIn,userdata} = useAuthentication();
 
   function handleUserMenu() {
     settogle(!toggle);
+  }
+  function handleLogout(){
+    document.cookie = 'token=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/';
+    Navigate('/login')
   }
 
   return (
@@ -31,7 +35,7 @@ function Navbar({login}) {
             <ul class="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg  md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 mr-">
              
              {
-                login?(
+                isLoggedIn?(
                     <>
                      <li>
                 <Link
@@ -76,8 +80,8 @@ function Navbar({login}) {
         {/* div two */}
        
         {
-            login?(<>
-               <div className="w-1/6 bg-blue-400  items-center justify-center pl-20">
+            isLoggedIn?(<>
+               <div className="w-1/2 md:w-1/6 bg-blue-400  items-center justify-center pl-20">
           <div class=" items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse ">
             <button
               type="button"
@@ -98,23 +102,23 @@ function Navbar({login}) {
             {/* <!-- Dropdown menu --> */}
 
             <div
-              className={`z-50 ${
+              className={`z-90 ${
                 toggle ? "hidden" : "visible"
               } my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow`}
               id="user-dropdown"
             >
               <div class="px-4 py-3">
                 <span class="block text-sm text-gray-900 dark:text-white">
-                  Bonnie Green
+                  {userdata.name}
                 </span>
                 <span class="block text-sm  text-gray-500 truncate dark:text-gray-400">
-                  name@flowbite.com
+                  {userdata.email}
                 </span>
               </div>
               <ul class="py-2" aria-labelledby="user-menu-button">
                 <li>
                   <Link
-                    to="#"
+                    to="/dashboard"
                     class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
                   >
                     Dashboard
@@ -122,19 +126,19 @@ function Navbar({login}) {
                 </li>
                 <li>
                   <Link
-                    to="#"
+                    to="/setting"
                     class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
                   >
                     Settings
                   </Link>
                 </li>
                 <li>
-                  <Link
-                    to="#"
+                  <button
+                    onClick={handleLogout}
                     class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
                   >
                     Sign out
-                  </Link>
+                  </button>
                 </li>
               </ul>
             </div>
@@ -165,8 +169,8 @@ function Navbar({login}) {
           </div>
           </div>
             </>):(<>
-                <div className="w-1/6 bg-blue-400  items-center justify-center mt-6 ml-12">
-                <button type="button" class=" text-white bg-blue-700 hover:bg-blue-800  focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 h-12  focus:outline-none " onClick={()=>{Navigate('/quote')}}>Get a Quote</button>
+                <div className="w-1/2 md:w-1/6 bg-blue-400  items-center justify-center my-6 ml-12">
+                <button type="button" class=" text-white bg-blue-700 hover:bg-blue-800  focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py- me-2 mb-2 h-12  focus:outline-none " onClick={()=>{Navigate('/quote')}}>Get a Quote</button>
                 </div>
             </>)
         }

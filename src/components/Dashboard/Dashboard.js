@@ -2,12 +2,20 @@ import React, { useEffect,useState } from 'react';
 import List from './list';
 import Navbar from '../Navbar/navbar';
 import axios from "axios"
+import useAuthentication from "../useAuth/useAuth"
+import Warning from '../warning/warning';
 
 const redirectURl = "http://localhost:4000/api/v1/url/all"
 
 const Dashboard = ({login}) => {
 
     const[response ,setResponse] = useState([])
+    const[userinfo ,setUserinfo] = useState(null)
+
+  
+    const isLoggedIn = useAuthentication();
+  
+   
 
     const fetchData = async () => {
         try {
@@ -16,7 +24,8 @@ const Dashboard = ({login}) => {
           })
           console.log("dashboard",response)
           if (response.status === "OK"||response.status === 200) {
-            setResponse(response.data);
+            setResponse(response.data.analytics);
+            setUserinfo(response.data.user)
            
             
           }
@@ -30,12 +39,16 @@ const Dashboard = ({login}) => {
 
       useEffect(()=>{fetchData()},[])
 
+      if (!isLoggedIn) {
+        return (<Warning/>)
+      }
+      
      
 
     let listData = "";
     listData = (response.length>0)?
     response.map((data,index) => (
-     <List key={index} data={data} setData={setResponse} fetchData={fetchData}/>
+     <List key={index} data={data} setData={setResponse} fetchData={fetchData} />
    )):null
 
 
@@ -53,23 +66,12 @@ const Dashboard = ({login}) => {
 
             <div class=" p-6 bg-white border border-gray-200 rounded-lg shadow  ">
     
-        <h3 class="mb-2 text-4xl font-bold tracking-tight text-gray-900 ">Hi, chetan chouhan</h3>
+        <h3 class="mb-8 text-4xl font-bold tracking-tight text-gray-900 ">Hi,{ `${userinfo?.name}`} </h3>
 
         
-         {listData}
+         <div className=''>{listData}</div>
 
-  
-
-
-
-
-    
-   
 </div>
-
-
-
-
 
             </div>
             <div className=' w-1/12'></div>

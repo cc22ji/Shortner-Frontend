@@ -58,7 +58,7 @@ function Login({setLogin}){
               navigate("/home");
               setEmail("")
               setPassword("")
-              setLogin(true)
+             
           }else {
               console.log("failed",result)
               
@@ -93,7 +93,7 @@ function Login({setLogin}){
       }
       <div class="flex items-center justify-between flex-wrap">
         
-        <a class="text-sm text-blue-500 hover:underline mb-0.5" href="#">Forgot password?</a>
+        <a class="text-md text-blue-500 hover:underline mb-1" href="#">Forgot password?</a>
         <p class="text-white mt-"> Don't have an account? <a class="text-sm text-blue-500 -200 hover:underline mt-4" href="/signup">Signup</a></p>
       </div>
       <button class="bg-slate-900 hover:bg-slate-700 text-white font-bold py-2 px-4 rounded-md mt-4  hover:to-blue-600 transition ease-in-out duration-150" type="submit" 
