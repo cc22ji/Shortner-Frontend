@@ -1,7 +1,7 @@
 import React,{useState} from 'react';
 import {useNavigate} from "react-router-dom"
 
-const SignUpURL = "http://localhost:4000/api/v1/user/signup"
+const SignUpURL = process.env.REACT_APP_SIGNUP_URL || "http://localhost:4000/api/v1/user/signup"
 
 
 const Signup = () => {
@@ -65,7 +65,7 @@ const Signup = () => {
           }
         } catch (error) {
           console.log(error)
-          setError(error || "Unable to Login")
+          setError(error?.response?.data?.message  || "Unable to Login")
         }
       }
 

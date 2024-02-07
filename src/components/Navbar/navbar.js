@@ -1,13 +1,15 @@
 import React, { useState } from "react";
 import logo from "../../images/logo.png";
-import { useNavigate } from "react-router-dom";
+import { useNavigate,Link } from "react-router-dom";
 
 
 
-function Navbar() {
+function Navbar({login}) {
   const [toggle, settogle] = useState(true);
-  const [login, setLogin] = useState(false);
+  // const [login, setLogin] = useState(true);
   const Navigate = useNavigate();
+  
+  
 
   function handleUserMenu() {
     settogle(!toggle);
@@ -18,9 +20,9 @@ function Navbar() {
       <nav className="bg-blue-400 flex flex-warp w-full h-24">
         {/* div one */}
         <div className="w-5/6 flex flex-wrap items-center justify-between mx-auto p-4 pl-12">
-          <a href="/" class="flex items-center space-x-3 rtl:space-x-reverse">
+          <Link to="/" class="flex items-center space-x-3 rtl:space-x-reverse">
             <img src={logo} class="h-8" alt="shortner Logo" />
-          </a>
+          </Link>
 
           <div
             class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1"
@@ -32,38 +34,38 @@ function Navbar() {
                 login?(
                     <>
                      <li>
-                <a
-                  href="#"
+                <Link
+                  to="/home"
                   class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 "
                 >
                   Home
-                </a>
+                </Link>
               </li>
               <li>
-                <a
-                  href="#"
+                <Link
+                  to="/dashboard"
                   class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0"
                 >
                   Dashboard
-                </a>
+                </Link>
               </li>
                     </>
                 ):(<>
                  <li>
-                <a
-                  href="/login"
+                <Link
+                  to="/login"
                   class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 "
                 >
                   Login
-                </a>
+                </Link>
               </li>
               <li>
-                <a
-                  href="/signup"
+                <Link
+                  to="/signup"
                   class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0"
                 >
                   Signup
-                </a>
+                </Link>
               </li>
                 </>)
              }
@@ -111,28 +113,28 @@ function Navbar() {
               </div>
               <ul class="py-2" aria-labelledby="user-menu-button">
                 <li>
-                  <a
-                    href="#"
+                  <Link
+                    to="#"
                     class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
                   >
                     Dashboard
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a
-                    href="#"
+                  <Link
+                    to="#"
                     class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
                   >
                     Settings
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a
-                    href="#"
+                  <Link
+                    to="#"
                     class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
                   >
                     Sign out
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </div>
