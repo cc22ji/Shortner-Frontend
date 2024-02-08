@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 //dependency
-const redirectURl = "https://url-shortener-five-mu.vercel.app/api/v1/user/auth";
+const redirectURl = "https://backend-shortner.vercel.app/api/v1/user/auth";
 
 const useAuthentication = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
