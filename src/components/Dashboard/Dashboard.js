@@ -26,7 +26,8 @@ const Dashboard = () => {
         setUserinfo(response.data.user);
       }
     } catch (error) {
-      // console.error("Fetching data error.", error);
+      // console.error("Fetching data error.", error, "mmmmm",response.data);
+      setUserinfo(error.response?.data?.user);
     }
   };
 
