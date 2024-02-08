@@ -219,8 +219,8 @@ import axios from "axios";
 import useAuthentication from "../useAuth/useAuth";
 import Warning from "../warning/warning";
 
-const backendURL = "http://localhost:4000/api/v1/url";
-const baseurl = "https://vercel.com/tests-projects-864dbd6b";
+const backendURL = "https://url-shortener-five-mu.vercel.app/api/v1/url";
+const baseurl = "https://url-shortener-five-mu.vercel.app";
 
 const Home = () => {
   const { isLoggedIn } = useAuthentication();
@@ -237,6 +237,11 @@ const Home = () => {
       setCopied(false);
     }, 2000);
   };
+
+    // if user is not authorised then show warning component
+  if (!isLoggedIn) {
+    return <Warning />;
+  }
 
   function handleInput(e) {
     setInput(e.target.value);

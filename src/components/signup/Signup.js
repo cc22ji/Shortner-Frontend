@@ -135,8 +135,8 @@
 import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 
-// const SignUpURL = 'https://shortner-backend-6skevpwix-tests-projects-864dbd6b.vercel.app/api/v1/user/signup'
-const SignUpURL = process.env.REACT_APP_SIGNUP_URL;
+const SignUpURL = 'https://url-shortener-five-mu.vercel.app/api/v1/user/signup'
+// const SignUpURL = process.env.REACT_APP_SIGNUP_URL;
 const Signup = () => {
   const navigate = useNavigate();
 

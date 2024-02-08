@@ -3,7 +3,7 @@ import {Link, useNavigate} from "react-router-dom"
 import axios from "axios";
 
 //dependent
-const LoginURL = "http://localhost:4000/api/v1/user/login"
+const LoginURL = "https://url-shortener-five-mu.vercel.app/api/v1/user/login"
 
 
 function Login(){
@@ -47,6 +47,7 @@ function Login(){
            
           });
           const result = response
+          console.log(result)
           if(result?.status === 200){
               setSuccess(result.message || "singup Succcessfully")
               setError(null)
@@ -62,6 +63,7 @@ function Login(){
               
           }
         } catch (error) {
+          console.log(error)
           setError(error?.response?.data?.message || "Unable to Login")
         }
       }

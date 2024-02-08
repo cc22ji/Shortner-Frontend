@@ -4,8 +4,8 @@ import { MdDelete } from "react-icons/md";
 import axios from "axios";
 
 //dependent
-const deleteDataURL = "http://localhost:4000/api/v1/url/delete";
-const baseurl = "https://vercel.com/tests-projects-864dbd6b";
+const deleteDataURL = "https://url-shortener-five-mu.vercel.app/api/v1/url/delete";
+const baseurl = "https://url-shortener-five-mu.vercel.app";
 
 const List = ({ data, fetchData }) => {
   // delete Api for deletin specfic data
