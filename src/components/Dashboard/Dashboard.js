@@ -6,7 +6,7 @@ import useAuthentication from "../useAuth/useAuth";
 import Warning from "../warning/warning";
 
 //dependent
-const redirectURl = "https://url-shortener-five-mu.vercel.app/api/v1/url/all";
+const redirectURl = "https://backend-shortner.vercel.app/api/v1/url/all";
 
 const Dashboard = () => {
   // define all hooks
