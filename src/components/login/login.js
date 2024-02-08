@@ -3,7 +3,7 @@ import {Link, useNavigate} from "react-router-dom"
 import axios from "axios";
 
 //dependent
-const LoginURL = "https://url-shortener-five-mu.vercel.app/api/v1/user/login"
+const LoginURL = "https://backend-shortner.vercel.app/api/v1/user/login"
 
 
 function Login(){
