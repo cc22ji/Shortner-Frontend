@@ -6,7 +6,7 @@ import Dashboard from "./components/Dashboard/Dashboard";
 import FrontPage from "./components/FrontPage/FrontPage";
 import Quote from "./components/Quote/Quote";
 import Setting from "./components/Setting/Setting";
-import {BrowserRouter , Router ,Routes ,Route} from "react-router-dom"
+import {BrowserRouter ,Routes ,Route} from "react-router-dom"
 
 
 
